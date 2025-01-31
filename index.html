@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Art Creator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Pixel Art Creator</h1>
+  <div class="container">
+    <!-- Lienzo de dibujo -->
+    <canvas id="pixelCanvas" width="400" height="400"></canvas>
+
+    <!-- Controles -->
+    <div class="controls">
+      <label for="colorPicker">Color:</label>
+      <input type="color" id="colorPicker" value="#000000">
+
+      <button id="clearButton">Limpiar Lienzo</button>
+      <button id="exportCodeButton">Exportar a Código</button>
+      <button id="importCodeButton">Importar desde Código</button>
+      <button id="exportImageButton">Exportar a Imagen</button>
+    </div>
+
+    <!-- Área para mostrar/importar código -->
+    <div class="code-area">
+      <textarea id="codeInput" placeholder="Pega tu código aquí (formato JSON)"></textarea>
+      <pre id="codeOutput"></pre>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
