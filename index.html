@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pixel Art Creator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="themeCheckbox">
+      <input type="checkbox" id="themeCheckbox">
+      <span class="slider round"></span>
+    </label>
+    <span id="themeLabel">Modo Oscuro</span>
+  </div>
+
   <h1>Pixel Art Creator</h1>
   <div class="container">
     <!-- Lienzo de dibujo -->
@@ -14,13 +23,13 @@
 
     <!-- Controles -->
     <div class="controls">
-      <label for="colorPicker">Color:</label>
+      <label for="colorPicker" class="button-like">Color:</label>
       <input type="color" id="colorPicker" value="#000000">
 
-      <button id="clearButton">Limpiar Lienzo</button>
-      <button id="exportCodeButton">Exportar a Código</button>
-      <button id="importCodeButton">Importar desde Código</button>
-      <button id="exportImageButton">Exportar a Imagen</button>
+      <button id="clearButton" class="gnome-button">Limpiar Lienzo</button>
+      <button id="exportCodeButton" class="gnome-button">Exportar a Código</button>
+      <button id="importCodeButton" class="gnome-button">Importar desde Código</button>
+      <button id="exportImageButton" class="gnome-button">Exportar a Imagen</button>
     </div>
 
     <!-- Área para mostrar/importar código -->

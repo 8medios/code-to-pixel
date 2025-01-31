@@ -1,31 +1,69 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Estilos generales */
+:root {
+    --background-light: #ffffff;
+    --background-dark: #242424;
+    --text-light: #000000;
+    --text-dark: #ffffff;
+    --primary-color: #9d35da;
+    --primary-hover: #d81ca9;
+    --border-light: #ccc;
+    --border-dark: #444;
+    --canvas-background: #ffffff;
+  }
+  
+  body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--background-light);
+    color: var(--text-light);
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
   }
   
   h1 {
-    color: #333;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
   }
   
   .container {
-    background-color: #fff;
+    background-color: var(--background-light);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  body.dark-mode .container {
+    background-color: #2d2d2d;
   }
   
   canvas {
-    border: 1px solid #ccc;
-    background-color: #fff;
+    border: 1px solid var(--border-light);
+    background-color: var(--canvas-background);
     cursor: crosshair;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  body.dark-mode canvas {
+    border-color: var(--border-dark);
   }
   
   .controls {
@@ -36,17 +74,35 @@ body {
     justify-content: center;
   }
   
-  button {
-    padding: 10px 15px;
+  .gnome-button {
+    padding: 10px 20px;
     border: none;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+    font-family: 'Press Start 2P', cursive;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  .gnome-button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .button-like {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  .button-like:hover {
+    background-color: var(--primary-hover);
   }
   
   .code-area {
@@ -59,16 +115,138 @@ body {
     width: 100%;
     height: 100px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
     font-family: monospace;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode textarea {
+    border-color: var(--border-dark);
+    background-color: #333;
+    color: var(--text-dark);
   }
   
   pre {
-    background-color: #f8f9fa;
+    background-color: var(--background-light);
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
     white-space: pre-wrap;
     word-wrap: break-word;
+    color: var(--text-light);
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode pre {
+    background-color: #333;
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+  }
+  
+  /* Interruptor de modo claro/oscuro */
+  .theme-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--primary-color);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 18px;
+    }
+  
+    .gnome-button, .button-like {
+      font-size: 10px;
+      padding: 8px 16px;
+    }
+  
+    .theme-switch-wrapper {
+      top: 10px;
+      right: 10px;
+    }
+  
+    .theme-switch {
+      width: 50px;
+      height: 28px;
+    }
+  
+    .slider:before {
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+    }
+  
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+  }
+
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Añadido para el posicionamiento de los canvas */
+  }
+  
+  canvas {
+    border: 1px solid #ccc;
+    background-color: transparent; /* Cambiado a transparente */
+    cursor: crosshair;
   }
